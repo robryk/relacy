@@ -322,7 +322,7 @@ struct win32_thread_helper
     static void* thread(void* p)
     {
         win32_thread_helper* self = (win32_thread_helper*)p;
-        void* result = (void*)(self->fn(self->param));
+        void* result = (void*)(uintptr_t)(self->fn(self->param));
         delete_impl(self, $);
         return result;
     }
