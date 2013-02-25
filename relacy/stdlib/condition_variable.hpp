@@ -39,7 +39,7 @@ public:
     }
 
 private:
-    mutable mutex_t& m_;
+    mutex_t& m_;
 
     virtual void lock(debug_info_param info) const
     {
