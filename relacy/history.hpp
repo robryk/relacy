@@ -177,9 +177,7 @@ private:
 
     void output(size_t i)
     {
-        size_t const buf_size = 4096;
-        char buf [buf_size + 1];
-        std::ostrstream stream (buf, buf_size);
+        std::ostringstream stream;
 
         history_entry const& ent = exec_history_[i];
 #ifdef RL_MSVC_OUTPUT
@@ -194,11 +192,9 @@ private:
         stream << ", in " << ent.info_ << std::endl;
 #endif
         
-        char* str = stream.str();
-        str[stream.pcount()] = 0;
-        out_stream_ << str;
+        out_stream_ << stream.str();
 #if defined(_MSC_VER) && defined(RL_MSVC_OUTPUT)
-        OutputDebugStringA(str);
+        OutputDebugStringA(stream.str());
 #endif
     }
 };
